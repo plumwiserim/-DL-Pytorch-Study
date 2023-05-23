@@ -84,4 +84,33 @@ for epoch in range(nb_epochs + 1):
         print('Epoch {:4d}/{} W: {:.3f}, b: {:.3f} Cost: {:.6f}'.format(
             epoch, nb_epochs, W.item(), b.item(), cost.item()
         ))
-        
+
+# optimizer.zero_grad() 가 필요한 이유
+# 파이토치는 미분을 통해 얻은 기울기를 이전에 계산된 기울기 값에 누적시키는 특징이 있다. 
+import torch 
+w = torch.tensor(2.0, requires_grad=True)
+
+np_epochs = 20
+for epoch in range(nb_epochs + 1): 
+    z = 2*w
+    z.backward()
+    print('수식을 w로 미분한 값: {}'.format(w.grad))
+
+# torch.manual_seed()를 하는 이유 
+import torch 
+
+torch.manual_seed(3)
+print('랜덤 시드가 3일 때')
+for i in range(1, 3):
+    print(torch.rand(1))
+
+torch.manual_seed(5)
+print('랜덤 시드가 5일 때')
+for i in range(1, 3):
+    print(torch.rand(1))
+
+# requires_grad 라는 속성을 True로 설정하면
+# 자동 미분 기능 적용 
+# 선형 회귀부터 신경망과 같은 복잡한 구조에서 파라미터들에 모두 적용 가능 
+# requires_grad = True 가 적용된 텐서에 연산을 하면, 계산 그래프가 생성되며 
+# backward 함수를 호출하면 그래프로부터 자동으로 미분이 계산된다. 
