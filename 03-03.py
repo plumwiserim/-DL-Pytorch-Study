@@ -1,5 +1,5 @@
 # 03. 선형 회귀(Linear Regression)
-# 03-03. 다중 선형 회귀(Multivariable Linear Regression)
+# 03-03. 다중 선형 회귀(Multivariable Linear Regression) 
 
 import torch
 import torch.nn as nn
